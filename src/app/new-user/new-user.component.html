@@ -1,0 +1,76 @@
+<h2>Create a new user!</h2>
+
+<form [formGroup]="newUser" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name" class="pr-2">
+      Name:
+      <span
+        class="text-danger"
+        *ngIf="
+          newUser.get('name')?.errors &&
+          newUser.get('name')?.hasError('required')
+        "
+      >
+        *
+      </span>
+    </label>
+    <input
+      id="name"
+      type="text"
+      class="form-control"
+      formControlName="name"
+      placeholder="Enter name"
+      [class.border-success]="
+        newUser.get('name')?.valid &&
+        (newUser.get('name')?.dirty || newUser.get('name')?.touched)
+      "
+      [class.border-danger]="
+        newUser.get('name')?.invalid &&
+        (newUser.get('name')?.dirty || newUser.get('name')?.touched)
+      "
+    />
+    <div
+      *ngIf="
+        newUser.get('name')?.invalid &&
+        newUser.get('name')?.errors &&
+        (newUser.get('name')?.dirty || newUser.get('name')?.touched)
+      "
+    >
+      <small
+        class="text-danger"
+        *ngIf="newUser.get('name')?.hasError('required')"
+      >
+        This field is required.
+      </small>
+      <small
+        class="text-danger"
+        *ngIf="newUser.get('name')?.hasError('minlength')"
+      >
+        The minimum length for this field is
+        {{ newUser.get('name')?.errors?.minlength.requiredLength }} characters.
+      </small>
+      <small
+        class="text-danger"
+        *ngIf="newUser.get('name')?.hasError('maxlength')"
+      >
+        The maximum length for this field is
+        {{ newUser.get('name')?.errors?.maxlength.requiredLength }} characters.
+      </small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email" class="pr-2">Email: </label>
+    <input
+      id="email"
+      type="email"
+      class="form-control"
+      formControlName="email"
+      placeholder="Enter email"
+    />
+  </div>
+
+  <button class="btn btn-primary" type="submit" [disabled]="newUser?.invalid">
+    Submit
+  </button>
+</form>

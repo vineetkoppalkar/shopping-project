@@ -1,0 +1,18 @@
+<h2>List of users</h2>
+
+<ul *ngIf="users" class="list-group">
+  <li
+    *ngFor="let user of users"
+    class="
+      d-inline-flex
+      align-items-center
+      justify-content-between
+      list-group-item
+    "
+  >
+    <a [routerLink]="['/user', user.id]">
+      {{ user.name }}
+    </a>
+    <button class="btn btn-primary" (click)="setCurrentUser(user.id)">Set as current User</button>
+  </li>
+</ul>

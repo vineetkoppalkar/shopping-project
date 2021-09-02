@@ -1,0 +1,9 @@
+<div *ngIf="user; else userNotFound">
+  <p>{{user.id}}</p>
+  <p>{{user.name}}</p>
+  <p>{{user.email}}</p>
+</div>
+
+<ng-template #userNotFound>
+  <p>User not found</p>
+</ng-template>

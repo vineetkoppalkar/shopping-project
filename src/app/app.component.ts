@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'shopping-project';
+  alertMessage: string | undefined
+
+  setAlertMessage(message: string): void {
+    this.alertMessage = message;
+  }
 }
