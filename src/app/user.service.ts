@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 import { User } from './user';
 
@@ -6,7 +7,9 @@ import { User } from './user';
   providedIn: 'root',
 })
 export class UserService {
-  currentUser: User | undefined;
+  currentUserSource = new BehaviorSubject<User | undefined>(undefined);
+  currentUser = this.currentUserSource.asObservable();
+
   users: User[] = [
     {
       id: 1,
@@ -18,11 +21,12 @@ export class UserService {
   constructor() {}
 
   setCurrentUser(userId: number): void {
-    this.currentUser = this.getUser(userId);
+    const user = this.getUser(userId);
+    this.currentUserSource.next(user);
   }
 
   getCurrentUser(): User | undefined {
-    return this.currentUser;
+    return this.currentUserSource.getValue()
   }
 
   addUser(user: User): void {

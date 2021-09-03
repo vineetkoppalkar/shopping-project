@@ -1,0 +1,23 @@
+<h2>Products</h2>
+<div class="container">
+  <div class="grid grid-gap grid-cols-1 grid-cols-sm-2 grid-cols-md-3">
+    <div *ngFor="let product of products" class="card p-4">
+      <img class="card-img-top" [src]="product.image" alt="Card image cap" />
+      <div class="card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text">
+          {{ product.description }}
+        </p>
+        <ngb-rating [(rate)]="product.rating.rate" [max]="5"></ngb-rating>
+        <p>{{ product.price | currency }}</p>
+        <button
+          *ngIf="currentUser"
+          (click)="buy(currentUser, product)"
+          class="btn btn-primary"
+        >
+          Buy
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

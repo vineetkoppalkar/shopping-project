@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { AlertService } from '../alert.service';
 
 @Component({
   selector: 'app-new-user',
@@ -13,22 +14,33 @@ import { UserService } from '../user.service';
 export class NewUserComponent implements OnInit {
   newUser = this.formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
-    email: ['', [Validators.required, Validators.email]]
+    email: ['', [Validators.required, Validators.email]],
   });
+  message: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {}
 
-  ngOnInit(): void {}
-
-  onSubmit(): void {
-    const user: User = this.newUser.value;
-    console.log('Submitting user', user);
-    this.userService.addUser(user);
-    this.router.navigateByUrl('/users');
+  ngOnInit(): void {
+    this.subscribeToAlert();
   }
 
+  subscribeToAlert(): void {
+    this.alertService.currentMessage.subscribe(
+      (message) => (this.message = message)
+    );
+  }
+
+  onSubmit(): void {
+    const user = this.newUser.value;
+    this.userService.addUser(user);
+    this.alertService.changeMessage(
+      `Creating user '${user.name}' with email '${user.email}'.`
+    );
+    this.router.navigateByUrl('/users');
+  }
 }

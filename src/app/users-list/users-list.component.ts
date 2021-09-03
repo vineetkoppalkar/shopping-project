@@ -35,7 +35,7 @@ export class UsersListComponent implements OnInit {
 
   setCurrentUser(userId: number): void {
     this.userService.setCurrentUser(userId);
-    const user = this.userService.getCurrentUser();
+    const user = this.userService.getUser(userId);
     if (user) {
       this.alertService.changeMessage(
         `Setting '${user.name}' as the current user.`

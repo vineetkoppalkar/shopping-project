@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -10,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { AlertComponent } from './alert/alert.component';
+import { ProductsComponent } from './products/products.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +21,16 @@ import { AlertComponent } from './alert/alert.component';
     UsersListComponent,
     NavbarComponent,
     UserDetailsComponent,
-    AlertComponent
+    AlertComponent,
+    ProductsComponent,
+    TransactionsComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

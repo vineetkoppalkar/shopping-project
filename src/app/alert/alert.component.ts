@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
-import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { AlertService } from '../alert.service';
 
