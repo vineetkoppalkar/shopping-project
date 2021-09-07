@@ -13,6 +13,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { AlertComponent } from './alert/alert.component';
 import { ProductsComponent } from './products/products.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { ReversePipe } from './reverse.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TransactionsComponent } from './transactions/transactions.component';
     UserDetailsComponent,
     AlertComponent,
     ProductsComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,

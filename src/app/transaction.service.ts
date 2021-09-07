@@ -14,8 +14,9 @@ export class TransactionService {
   constructor() {}
 
   addTransaction(transaction: Transaction): void {
-    this.transactions.push(transaction);
-    this.allTransactionsSource.next(this.transactions);
+    const previousTransactions = this.getTransactions();
+    previousTransactions.push(transaction);
+    this.allTransactionsSource.next(previousTransactions);
   }
 
   getTransactions(): Transaction[] {

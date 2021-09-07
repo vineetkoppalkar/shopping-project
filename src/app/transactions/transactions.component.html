@@ -1,6 +1,9 @@
 <h2>Transactions</h2>
 <ul class="list-group">
-  <li *ngFor="let transaction of transactions.slice().reverse()" class="list-group-item">
-    {{transaction.user.name}} purchased {{transaction.product.title}}
+  <li
+    *ngFor="let transaction of transactions | reverse"
+    class="list-group-item"
+  >
+    {{ transaction.user.name }} purchased {{ transaction.product.title }}
   </li>
 </ul>
